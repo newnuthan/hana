@@ -1,0 +1,12 @@
+{
+  "DAT.db::product_16": {
+    "target": {
+      "object": "DAT.db::APAC_Tabs.Product_16"
+    }
+  },
+  "DAT.db::product_17": {
+    "target": {
+      "object": "DAT.db::APAC_Tabs.Product_17"
+    }
+  }
+}

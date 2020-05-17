@@ -1,0 +1,35 @@
+namespace DAT.db {
+
+    /*@@layout{"layoutInfo":{"x":-182,"y":-101.5}}*/
+    entity Product_16 {
+        Product_id    : String(10);
+        Product_name  : String(10);
+    };
+    
+   /*@@layout{"layoutInfo":{"x":-182,"y":-101.5}}*/
+    entity Product_17 {
+        Product_id    : String(10);
+        Product_name  : String(10);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-520,"y":-183.5}}*/
+    entity Cust_SF {
+        Cust_id   : Integer;
+        Cust_name : String(20);
+        Cust_dept : String(20);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-713,"y":-139.5}}*/
+    entity Cust_SAP {
+        Cust_id   : Integer;
+        Cust_name : String(20);
+        Cust_dept : String(20);
+    };
+    
+    entity Sales {
+        Cust_id    : String(10);
+        Product_id : String(10);
+        Year      : String(10);
+        Sales_Amt : Integer;
+    };
+};

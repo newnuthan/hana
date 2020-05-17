@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="DAT.db::CV_Sales" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_Sales"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="DAT.db::CUSTOMERS">
+    <resourceUri>DAT.db::CUSTOMERS</resourceUri>
+  </DataSource>
+  <DataSource id="DAT.db::SALES">
+    <resourceUri>DAT.db::SALES</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Customer">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="ACTIVE"/>
+      <viewAttribute id="COUNTRY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DAT.db::CUSTOMERS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_Cust_Sales" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="ACTIVE"/>
+      <viewAttribute id="SALE_AMT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Customer">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACTIVE" source="ACTIVE"/>
+    </input>
+    <input node="Sales">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALE_AMT" source="SALE_AMT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="CUST_ID"/>
+    </input>
+    <joinAttribute name="ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Sales">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="CUST_ID"/>
+      <viewAttribute id="SALE_AMT"/>
+      <viewAttribute id="COUNTRY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DAT.db::SALES"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_Cust_Sales">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_Cust_Sales" columnName="ID"/>
+    </attribute>
+    <attribute id="NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping columnObjectName="Join_Cust_Sales" columnName="NAME"/>
+    </attribute>
+    <attribute id="ACTIVE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACTIVE"/>
+      <keyMapping columnObjectName="Join_Cust_Sales" columnName="ACTIVE"/>
+    </attribute>
+    <attribute id="SALE_AMT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALE_AMT"/>
+      <keyMapping columnObjectName="Join_Cust_Sales" columnName="SALE_AMT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Customer" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_Cust_Sales" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Customer" modelObjectNameSpace="Join_Cust_Sales" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="157"/>
+    </shape>
+    <shape modelObjectName="Sales" modelObjectNameSpace="Join_Cust_Sales" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Sales" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="361" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

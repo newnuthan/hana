@@ -1,0 +1,19 @@
+PROCEDURE "DAT.db::SP_SALES"( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY DEFINER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   /*************************************
+       Write your procedure logic 
+   *************************************/
+/*   SELECT TOP 1000
+	"Product_id",
+	"Product_name"
+FROM "DAT.db"."APAC_Tabs.Product_16";*/
+
+a = select * from "DAT.db::CUSTOMERS";
+
+select * from :a;
+
+END
