@@ -2,7 +2,7 @@ namespace DAT.db {
 
     /*@@layout{"layoutInfo":{"x":-182,"y":-101.5}}*/
     entity Product_16 {
-        Product_id    : String(10);
+        Product_id    : String(20);
         Product_name  : String(10);
     };
     
